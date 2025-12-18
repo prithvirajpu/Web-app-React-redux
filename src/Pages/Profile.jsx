@@ -6,7 +6,7 @@ const Profile = () => {
   return (
     <div>
       <h2>Profile</h2>
-      <p>Name: {user?.name}</p>
+      <p>Name: {user?.username}</p>
       <p>Email: {user?.email}</p>
     </div>
   )

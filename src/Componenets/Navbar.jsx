@@ -12,10 +12,7 @@ const Navbar = () => {
       <div className="left">
         <h2>My page</h2>
       </div>
-      {email && <div className="right">
-        <button onClick={()=>(dispatch(logout()),navigate('/'))}>Logout</button>
-
-      </div>}
+      
     </div>
   )
 }
