@@ -1,0 +1,177 @@
+/* Section wrapper */
+.admin-users {
+  margin: 20px auto;
+  max-width: 900px;
+  font-family: Arial, sans-serif;
+}
+
+/* Section header */
+.admin-users-header {
+  display: flex;
+  justify-content: space-between; /* Title left, button right */
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.admin-users-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+/* Create User Button */
+.admin-add-btn {
+  padding: 8px 16px;              /* bigger clickable area */
+  font-size: 16px;                /* readable text */
+  font-weight: 600;
+  background-color: #2b6e2c;     /* green background */
+  color: #fff;                    /* white text */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.admin-add-btn:hover {
+  background-color: #0e6a36;     /* darker green on hover */
+  transform: scale(1.05);        /* slight grow effect */
+}
+
+/* Create user form */
+.admin-form {
+  background-color: #f9fafb;
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.admin-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.admin-form-label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.admin-form-input {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+}
+
+.admin-form-input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.admin-form-button {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.admin-form-button:hover {
+  background-color: #1e40af;
+}
+
+/* Table */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  font-size: 14px;
+}
+
+.admin-table th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
+/* Action buttons */
+.admin-action-btn {
+  padding: 6px 10px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.admin-delete-btn {
+  background-color: #dc2626;
+  color: white;
+}
+
+.admin-delete-btn:hover {
+  background-color: #b91c1c;
+}
+
+.admin-toggle-btn {
+  background-color: #2563eb;
+  color: white;
+}
+
+.admin-toggle-btn:hover {
+  background-color: #1e40af;
+}
+
+/* Pagination */
+.admin-pagination {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.admin-pagination button {
+  padding: 6px 12px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.admin-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-pagination button:hover:not(:disabled) {
+  background-color: #f3f4f6;
+}
+
+/* Error */
+.admin-error {
+  color: #dc2626;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+/* Responsive Table */
+@media (max-width: 600px) {
+  .admin-table th,
+  .admin-table td {
+    font-size: 12px;
+    padding: 8px 6px;
+  }
+
+  .admin-add-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}

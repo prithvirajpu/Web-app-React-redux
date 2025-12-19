@@ -6,8 +6,9 @@ const initialState = {
     username: "",
     email: "",
     password: "",
+    confirm_password:'',
   },
-  user: null,
+  user: JSON.parse(localStorage.getItem('user'))|| null,
   accessToken: localStorage.getItem("access_token") || null,
   loading: false,
   error: null,
@@ -28,6 +29,12 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       localStorage.removeItem("access_token");
       localStorage.removeItem("refresh_token");
+      localStorage.removeItem('user');
+    },
+    resetForm:state=>{
+      state.form={
+        username:'',email:'',password:'',confirm_password:'',
+      };
     },
   },
   extraReducers: (builder) => {
@@ -82,5 +89,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { updateForm, logout } = authSlice.actions;
+export const { updateForm, logout,resetForm } = authSlice.actions;
 export default authSlice.reducer;

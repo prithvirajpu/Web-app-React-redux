@@ -19,8 +19,7 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <h2>Home</h2>
-      <p>Welcome {user ? user.username : 'Guest'}</p>
+      <h1>Welcome {user ? user.username : 'Guest'}</h1>
     </div>
   );
 };

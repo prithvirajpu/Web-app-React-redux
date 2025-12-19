@@ -9,18 +9,16 @@ export const signupUser = createAsyncThunk(
 
       localStorage.setItem('access_token', res.data.access_token);
       localStorage.setItem('refresh_token', res.data.refresh);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
 
       return res.data;
     } catch (err) {
       const data = err.response?.data;
-      return rejectWithValue(
-        typeof data === 'string'
-          ? data
-          : data?.message || data?.detail || 'Signup failed'
-      );
+      return rejectWithValue(data || { detail: 'Signup failed' });
     }
   }
 );
+
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
@@ -30,6 +28,7 @@ export const loginUser = createAsyncThunk(
 
       localStorage.setItem('access_token', res.data.access_token);
       localStorage.setItem('refresh_token', res.data.refresh);
+      localStorage.setItem('user',JSON.stringify(res.data.user));
 
       return res.data;
     } catch (err) {

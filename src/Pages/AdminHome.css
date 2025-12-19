@@ -1,0 +1,55 @@
+/* Page layout */
+.admin-container {
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  padding: 0; /* remove padding so navbar touches edges */
+}
+
+/* Dashboard card */
+.admin-card {
+  margin: 24px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* keeps navbar rounded */
+}
+
+/* Navbar */
+.admin-header {
+  background-color: #1f2937; /* dark navbar */
+  color: #ffffff;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Title */
+.admin-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Welcome text */
+.admin-welcome {
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+/* Section spacing */
+.admin-section {
+  padding: 24px;
+}
+.admin-logout-btn {
+  background-color: #dc2626;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.admin-logout-btn:hover {
+  background-color: #b91c1c;
+}
+

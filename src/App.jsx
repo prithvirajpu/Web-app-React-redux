@@ -9,7 +9,7 @@ import { fetchProfile } from './features/auth/authThunks'
 import Profile from './Pages/Profile'
 import AdminRoute from './routes/AdminRoute'
 import AdminHome from './Pages/AdminHome'
-import AdminUsers from './Pages/AdminUsers'
+import AdminUsers from './Pages/AdminUser'
 
 const App = () => {
   const dispatch=useDispatch()

@@ -1,0 +1,160 @@
+/* Page background & centering */
+.login-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45); /* dark overlay like modal */
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+/* Dark login card */
+.login-card {
+  background-color: #2d2d2d; /* dark gray */
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 40px 52px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+}
+
+/* Title */
+.login-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* Form layout */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+/* Floating label wrapper */
+.input-wrapper {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+}
+
+/* Inputs */
+.login-input {
+  width: 100%;
+  padding: 14px 12px ;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #404040;
+  color: white;
+  font-size: 14px;
+}
+
+/* Floating labels */
+.login-input::placeholder {
+  color: #b0b0b0;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.input-wrapper label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b0b0;
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+/* Move label up when input is focused or has value */
+.login-input:focus + label,
+.login-input:not(:placeholder-shown) + label {
+  top: -8px;
+  font-size: 12px;
+  color: #3b82f6;
+  background: #2d2d2d;
+  padding: 0 4px;
+}
+
+/* Action buttons container */
+.login-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+/* Submit/Login button */
+.btn-submit {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btn-submit:hover {
+  background: #2563eb;
+}
+
+/* Cancel button (optional) */
+.btn-cancel {
+  background: #6b6b6b;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btn-cancel:hover {
+  background: #555;
+}
+
+/* Error message */
+.login-error {
+  color: #dc2626;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Register link */
+.login-footer {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.login-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-card {
+    width: 90%;
+    padding: 25px 20px 40px;
+  }
+
+  .input-wrapper,
+  .login-actions {
+    width: 90%;
+  }
+}
