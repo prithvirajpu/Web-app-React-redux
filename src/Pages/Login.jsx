@@ -85,7 +85,7 @@ const Login = () => {
             className="login-input"
             placeholder="Email"
           />
-          {errors.email && touched.email && <p style={{color:'red'}} >{errors.email}</p>}
+          {errors.email && touched.email && <p className="error-text">{errors.email}</p>}
         </div>
 
         <div className="input-wrapper">
@@ -98,7 +98,7 @@ const Login = () => {
             className="login-input"
             placeholder="Password"
           />
-          {errors.password && touched.password && (<p style={{color:'red'}}>{errors.password}</p>) }
+          {errors.password && touched.password && (<p className="error-text">{errors.password}</p>) }
         </div>
         <div className="login-actions">
         <button
@@ -111,7 +111,7 @@ const Login = () => {
         </div>
 
         {error && (
-          <p className="login-error">
+          <p className="error-text">
             {typeof error === "string"
               ? error
               : error?.message || error?.detail || "Login failed"}

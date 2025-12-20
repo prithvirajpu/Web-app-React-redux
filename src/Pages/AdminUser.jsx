@@ -22,24 +22,16 @@ const AdminUsers = () => {
 
   if (loading) return <p>Loading users...</p>;
 
-  if (error)
-    return (
-      <p className="admin-error">
-        {typeof error === "string"
-          ? error
-          : error.detail || JSON.stringify(error)}
-      </p>
-    );
-
   const handlePage = (url) => {
     if (!url) return;
     dispatch(fetchAdminUsers(url));
   };
 
-  const handleCreateUser=(data)=>{
-    dispatch(createAdminUser(data));
-    setShowCreateModal(false)
-  }
+const handleCreateUser = async (data) => {
+  await dispatch(createAdminUser(data)).unwrap();
+  setShowCreateModal(false);
+};
+
   return (
     <div className="admin-users">
 

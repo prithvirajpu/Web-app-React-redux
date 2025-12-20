@@ -40,7 +40,7 @@ const adminSlice=createSlice({
 
         .addCase(deleteAdminUser.pending,state=>{state.loading=true,state.error=null})
         .addCase(deleteAdminUser.fulfilled,(state,action)=>{state.loading=false;
-            state.users=state.users.filter((u)=>u.id!==action.payload);
+            state.users=state.users.filter((u)=>u.id!==action.meta.arg.id);
             state.count-=1;
         })
         .addCase(deleteAdminUser.rejected,(state,action)=>{state.loading=false,state.error=action.payload})

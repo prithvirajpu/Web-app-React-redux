@@ -23,7 +23,8 @@ export const createAdminUser= createAsyncThunk(
             const response=await AxiosInstance.post('admin/users/',userData);
             return response.data;
         } catch (error) {
-            return rejectWithValue(error.response.data || 'User creation failed' );
+            const backendError = error.response?.data || { detail: "User creation failed" };
+            return rejectWithValue(backendError);
         }
     }
 )

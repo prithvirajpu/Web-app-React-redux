@@ -1,18 +1,18 @@
-/* Page background & centering */
+/* Overlay */
 .register-container {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.45); /* dark overlay like modal */
+  background: rgba(0, 0, 0, 0.45);
   font-family: Arial, sans-serif;
   z-index: 1000;
 }
 
-/* Dark register card */
+/* Card */
 .register-card {
-  background-color: #2d2d2d; /* dark gray */
+  background-color: #2d2d2d;
   width: 100%;
   max-width: 400px;
   padding: 30px 40px 52px;
@@ -29,23 +29,25 @@
   margin-bottom: 25px;
 }
 
-/* Form layout */
+/* Form */
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
-/* Input wrapper */
+/* Input + error wrapper */
 .input-wrapper {
-  width: 70%;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center the wrapper */
 }
 
 /* Inputs */
 .register-input {
-  width: 100%;
-  padding: 14px 12px;
+  width: 70%;
+  margin: 0 30px 0 30px; /* left-right margin like modal */
+  padding: 14px 10px 10px 50px;
   border-radius: 8px;
   border: none;
   outline: none;
@@ -54,28 +56,31 @@
   font-size: 14px;
 }
 
-/* Placeholder styling */
+/* Placeholder */
 .register-input::placeholder {
   color: #b0b0b0;
-  opacity: 1;
-  transition: opacity 0.2s ease;
 }
 
-/* Hide placeholder when typing */
-.register-input:not(:placeholder-shown)::placeholder {
-  opacity: 0;
+/* Error text */
+.error-text {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  align-self: flex-start;
+  margin-left: 30px; /* same as input left margin */
 }
 
-/* Action buttons container */
+/* Actions */
 .register-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
-  width: 50%;
-  margin: 0 auto;
+  width: 70%;
+  margin: 10px auto 0;
 }
 
-/* Submit/Register button */
+/* Submit button */
 .btn-submit {
   background: #3b82f6;
   color: white;
@@ -83,36 +88,14 @@
   padding: 12px 18px;
   border-radius: 8px;
   cursor: pointer;
-  flex: 1;
+  width: 100%;
 }
 
 .btn-submit:hover {
   background: #2563eb;
 }
 
-/* Cancel button (optional) */
-.btn-cancel {
-  background: #6b6b6b;
-  color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  flex: 1;
-}
-
-.btn-cancel:hover {
-  background: #555;
-}
-
-/* Error message */
-.register-error {
-  color: #dc2626;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-/* Footer link */
+/* Footer */
 .register-footer {
   text-align: center;
   margin-top: 16px;
@@ -135,8 +118,14 @@
     padding: 25px 20px 40px;
   }
 
+  .register-input,
   .input-wrapper,
   .register-actions {
     width: 90%;
+    margin: 0 auto;
+  }
+
+  .error-text {
+    margin-left: 10px; /* adjust for small screen */
   }
 }
