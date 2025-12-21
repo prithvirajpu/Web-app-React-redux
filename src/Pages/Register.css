@@ -19,7 +19,7 @@
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   color: white;
-  text-align: center;
+  /* text-align: center; */
 }
 
 /* Title */
@@ -45,7 +45,7 @@
 
 /* Inputs */
 .register-input {
-  width: 70%;
+  width: 100%;
   margin: 0 30px 0 30px; /* left-right margin like modal */
   padding: 14px 10px 10px 50px;
   border-radius: 8px;
@@ -68,7 +68,7 @@
   margin-top: 4px;
   margin-bottom: 0;
   align-self: flex-start;
-  margin-left: 30px; /* same as input left margin */
+  margin-left: 0; /* same as input left margin */
 }
 
 /* Actions */

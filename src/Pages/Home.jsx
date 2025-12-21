@@ -17,9 +17,9 @@ const Home = () => {
 
 
   return (
-    <div>
+    <div >
       <Navbar />
-      <h1>Welcome {user ? user.username : 'Guest'}</h1>
+      <h1 style={{textAlign:'center'}}>Welcome {user ? user.username : 'Guest'}</h1>
     </div>
   );
 };

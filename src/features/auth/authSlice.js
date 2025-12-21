@@ -12,6 +12,7 @@ const initialState = {
   accessToken: localStorage.getItem("access_token") || null,
   loading: false,
   error: null,
+  profile: null, 
   isLoggedIn: !!localStorage.getItem("access_token"),
 };
 
@@ -76,7 +77,7 @@ const authSlice = createSlice({
       })
       .addCase(fetchProfile.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.profile = action.payload;
         state.isLoggedIn = true;
       })
       .addCase(fetchProfile.rejected, (state) => {

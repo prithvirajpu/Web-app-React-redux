@@ -23,8 +23,8 @@ const Login = () => {
 
     if (name === "password") {
       if (!value.trim()) return "Password is required";
-      if (value.length < 5)
-        return "At least 5 characters";
+      if (value.length < 6)
+        return "At least 6 characters";
     }
     return "";
   };
@@ -111,7 +111,7 @@ const Login = () => {
         </div>
 
         {error && (
-          <p className="error-text">
+          <p className="error-back">
             {typeof error === "string"
               ? error
               : error?.message || error?.detail || "Login failed"}
