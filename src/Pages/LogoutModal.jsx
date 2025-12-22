@@ -1,5 +1,5 @@
 import React from "react";
-import "./LogoutModal.css"; // basic styles, can reuse ConfirmModal CSS
+import "./LogoutModal.css"; 
 
 const LogoutModal = ({ show, onConfirm, onCancel }) => {
   if (!show) return null;

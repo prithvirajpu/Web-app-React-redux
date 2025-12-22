@@ -1,5 +1,5 @@
 import React from "react";
-import "./LogoutModal.css"; // same CSS you already improved
+import "./LogoutModal.css"; 
 
 const DeleteConfirmModal = ({ show, onConfirm, onCancel, username }) => {
   if (!show) return null;
