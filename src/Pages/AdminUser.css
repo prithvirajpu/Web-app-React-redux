@@ -120,8 +120,27 @@
   background-color: #b91c1c;
 }
 
+.admin-edit-btn{
+  background-color: rgb(182, 182, 22);
+  color: white;
+}
+.admin-edit-btn:hover{
+  background-color: rgb(85, 85, 3);
+}
+
 .admin-toggle-btn {
   background-color: #2563eb;
+  color: white;
+}
+.admin-save-btn{
+  background-color: green;
+  color: white;
+}
+.admin-save-btn:hover{
+  background: rgb(1, 75, 1);
+}
+.admin-cancel-btn{
+  background: rgb(145, 49, 49);
   color: white;
 }
 

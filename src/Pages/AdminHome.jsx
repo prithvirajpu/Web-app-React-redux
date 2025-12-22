@@ -1,17 +1,21 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AdminUsers from "./AdminUser";
 import "./AdminHome.css";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../features/auth/authSlice";
+import { logout, resetForm } from "../features/auth/authSlice";
+import LogoutModal from './LogoutModal'
+import { useState } from "react";
 
 const AdminHome = () => {
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const dispatch=useDispatch();
   const navigate=useNavigate()
   const user = useSelector((state) => state.auth.user);
 
   function handleLogout(){
     dispatch(logout())
+    dispatch(resetForm())
+    setShowLogoutModal(false)
     navigate('/login')
   }
 
@@ -26,13 +30,14 @@ const AdminHome = () => {
             </p>
           </div>
           <div>
-            <button onClick={handleLogout} className="admin-action-btn admin-logout-btn" >Logout</button>
+            <button onClick={()=>setShowLogoutModal(true)} className="admin-action-btn admin-logout-btn" >Logout</button>
           </div>
         </div>
 
         <div className="admin-section">
           <AdminUsers />
         </div>
+        <LogoutModal  show={showLogoutModal} onCancel={()=>setShowLogoutModal(false)} onConfirm={handleLogout}/>
       </div>
     </div>
   );

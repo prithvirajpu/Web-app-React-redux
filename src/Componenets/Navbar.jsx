@@ -2,16 +2,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../features/auth/authSlice'
 import { useNavigate } from 'react-router-dom'
 import './Navbar.css'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { fetchProfile } from '../features/auth/authThunks'
+import LogoutModal from '../Pages/LogoutModal'
 
 const Navbar = () => {
+  const [showLogoutModal,setShowLogoutModal]=useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { profile } = useSelector(state => state.auth)
 
   const handleLogout = () => {
     dispatch(logout())
+    setShowLogoutModal(false)
     navigate('/')
   }
 
@@ -49,9 +52,9 @@ const Navbar = () => {
           </div>
         )}
 
-        <button onClick={handleLogout} className="logout-btn">
-          Logout
-        </button>
+         <button className='logout-btn' onClick={() => setShowLogoutModal(true)}>Logout</button>
+         <LogoutModal show={showLogoutModal} onConfirm={handleLogout} onCancel={()=>{setShowLogoutModal(false)}}/>
+
       </div>
     </header>
   )

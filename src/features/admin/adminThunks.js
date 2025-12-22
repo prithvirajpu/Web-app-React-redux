@@ -40,6 +40,7 @@ export const updateAdminUser=createAsyncThunk(
         }
     }
 )
+
 export const deleteAdminUser=createAsyncThunk(
     'admin/deleteUser',
     async({id},{rejectWithValue})=>{

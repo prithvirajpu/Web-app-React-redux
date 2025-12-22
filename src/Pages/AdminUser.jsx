@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createAdminUser,
@@ -8,19 +8,22 @@ import {
 } from "../features/admin/adminThunks";
 import "./AdminUser.css";
 import CreateUserModal from "./CreateUserModal";
+import DeleteConfirmModal from "./DeleteConfirmModal.jsx";
 
 const AdminUsers = () => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteUser, setDeleteUser] = useState(null);
+
   const dispatch = useDispatch();
-  const { users, loading, error, previous, next } = useSelector(
-    (state) => state.admin
-  );
+  const { users, loading, error, previous, next } = useSelector((state) => state.admin);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [editingUserId, setEditingUserId] = useState(null);
+  const [editingData, setEditingData] = useState({ email: "" });
+  const [rowError, setRowError] = useState("");
 
   useEffect(() => {
     dispatch(fetchAdminUsers());
   }, [dispatch]);
-
-  if (loading) return <p>Loading users...</p>;
 
   const handlePage = (url) => {
     if (!url) return;
@@ -29,29 +32,50 @@ const AdminUsers = () => {
 
 const handleCreateUser = async (data) => {
   await dispatch(createAdminUser(data)).unwrap();
-  setShowCreateModal(false);
+  setShowCreateModal(false); // Only runs if no error
 };
+
+  const startEdit = (user) => {
+    setEditingUserId(user.id);
+    setEditingData({ email: user.email });
+    setRowError("");
+  };
+
+  const cancelEdit = () => {
+    setEditingUserId(null);
+    setEditingData({ email: "" });
+    setRowError("");
+  };
+
+  const saveEdit = async (userId) => {
+    try {
+      await dispatch(updateAdminUser({ id: userId, userData: editingData })).unwrap();
+      cancelEdit();
+    } catch (err) {
+      const firstKey = err && typeof err === "object" && Object.keys(err)[0];
+      const errorValue = firstKey ? err[firstKey] : err;
+      setRowError(Array.isArray(errorValue) ? errorValue[0] : String(errorValue || "Update failed"));
+    }
+  };
+  const confirmDelete = async () => {
+    if (!deleteUser) return;
+
+    await dispatch(deleteAdminUser({ id: deleteUser.id }));
+    setShowDeleteModal(false);
+    setDeleteUser(null);
+  };
+
+  if (loading) return <p>Loading users...</p>;
 
   return (
     <div className="admin-users">
-
-      
-      {/* HEADER */}
       <div className="admin-users-header">
         <h2 className="admin-users-title">List of Users</h2>
-
-        <button
-          className="admin-add-btn"
-          onClick={() => {
-            console.log('btn clicked')
-            setShowCreateModal(true);}}
-          title="Create User"
-        >
+        <button className="admin-add-btn" onClick={() => setShowCreateModal(true)}>
           + Create User
         </button>
       </div>
 
-      {/* MODAL */}
       {showCreateModal && (
         <CreateUserModal
           onClose={() => setShowCreateModal(false)}
@@ -59,7 +83,6 @@ const handleCreateUser = async (data) => {
         />
       )}
 
-      {/* USERS TABLE */}
       <table className="admin-table">
         <thead>
           <tr>
@@ -71,41 +94,68 @@ const handleCreateUser = async (data) => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user,index) => (
+          {users.map((user, index) => (
             <tr key={user.id}>
-              <td>{index+1}</td>
+              <td>{index + 1}</td>
               <td>{user.username}</td>
-              <td>{user.email}</td>
+              <td>
+                {editingUserId === user.id ? (
+                  <div>
+                    <input
+                      type="email"
+                      value={editingData.email}
+                      onChange={(e) => setEditingData({ ...editingData, email: e.target.value })}
+                    />
+                    {rowError && (
+                      <p className="admin-error" style={{ color: "red", fontSize: "12px", margin: "4px 0 0 0" }}>
+                        {rowError}
+                      </p>
+                    )}
+                  </div>
+                ) : (
+                  user.email
+                )}
+              </td>
               <td>{user.is_active ? "Yes" : "No"}</td>
               <td>
                 <button
-                  className="admin-action-btn admin-delete-btn"
-                  onClick={() =>
-                    dispatch(deleteAdminUser({ id: user.id }))
-                  }
-                >
-                  Delete
-                </button>
+                    className="admin-action-btn admin-delete-btn"
+                    onClick={() => {
+                      setDeleteUser(user);
+                      setShowDeleteModal(true);
+                    }}
+                  >
+                    Delete
+                  </button>
+
                 <button
                   className="admin-action-btn admin-toggle-btn"
                   onClick={() =>
-                    dispatch(
-                      updateAdminUser({
-                        id: user.id,
-                        userData: { is_active: !user.is_active },
-                      })
-                    )
+                    dispatch(updateAdminUser({ id: user.id, userData: { is_active: !user.is_active } }))
                   }
                 >
                   {user.is_active ? "Block" : "Unblock"}
                 </button>
+                {editingUserId === user.id ? (
+                  <>
+                    <button className="admin-action-btn admin-save-btn" onClick={() => saveEdit(user.id)}>
+                      Save
+                    </button>
+                    <button className="admin-action-btn admin-cancel-btn" onClick={cancelEdit}>
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  <button className="admin-action-btn admin-edit-btn" onClick={() => startEdit(user)}>
+                    Edit
+                  </button>
+                )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* PAGINATION */}
       <div className="admin-pagination">
         <button onClick={() => handlePage(previous)} disabled={!previous}>
           Previous
@@ -114,6 +164,15 @@ const handleCreateUser = async (data) => {
           Next
         </button>
       </div>
+      <DeleteConfirmModal
+            show={showDeleteModal}
+            username={deleteUser?.username}
+            onCancel={() => {
+              setShowDeleteModal(false);
+              setDeleteUser(null);
+            }}
+            onConfirm={confirmDelete}
+          />
     </div>
   );
 };

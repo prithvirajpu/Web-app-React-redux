@@ -14,7 +14,7 @@ const CreateUserModal = ({ onClose, onCreate }) => {
   
   useEffect(()=>{
     dispatch(resetForm())
-  },[dispatch])
+  },[])
 
 const handleBlur = (e) => {
   const { name, value } = e.target;
@@ -73,7 +73,6 @@ const handleBlur = (e) => {
     confirm_password
   );
 
-  // Frontend validation
   if (usernameError || emailError || passwordError || confirmPasswordError) {
     setErrors({
       username: usernameError,
@@ -96,7 +95,7 @@ const handleBlur = (e) => {
     dispatch(resetForm());
     setErrors({});
     setTouched({});
-  } catch (error) {
+ } catch (error) {
     const newErrors = {};
     const newTouched = {};
 
@@ -115,20 +114,21 @@ const handleBlur = (e) => {
     if (error?.detail) {
       newErrors.detail = error.detail;
     }
-
-    // Replace the entire errors and touched state
     setErrors(newErrors);
     setTouched(newTouched);
-  }
-};
-
+  }}
   return (
     <div className="modal-overlay">
       <div className="modal-card">
         <h3>Create User</h3>
          {errors.detail && (
         <div className="general-error">
-          <p className="error-text">{errors.detail}</p>
+          <p className="error-text" style={{ 
+    color: 'red', 
+    background: 'yellow', 
+    padding: '10px', 
+    fontSize: '16px',
+    border: '2px solid red'}} >{errors.detail}</p>
         </div>
       )}
         <form className="modal-form" onSubmit={handleSubmit}>
