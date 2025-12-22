@@ -1,20 +1,21 @@
 import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import AxiosInstance from '../../api/AxiosInstance'
 
-export const fetchAdminUsers=createAsyncThunk(
-    'admin/fetchUsers',
-    async(_,{rejectWithValue})=>{
-        try {
-            const res=await AxiosInstance.get('admin/users/');
-            console.log(res.data)
-            return res.data
-        } catch (error) {
-            return rejectWithValue(
-                error.response?.data || 'Failed to fetch users. '
-            )         
-        }
+export const fetchAdminUsers = createAsyncThunk(
+  'admin/fetchUsers',
+  async (search = '', { rejectWithValue }) => {
+    try {
+      const res = await AxiosInstance.get('admin/users/', {
+        params: search ? { search } : {},
+      });
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || 'Failed to fetch users.');
     }
-)
+  }
+);
+
 
 export const createAdminUser= createAsyncThunk(
     "admin/createUser",
@@ -40,7 +41,6 @@ export const updateAdminUser=createAsyncThunk(
         }
     }
 )
-
 export const deleteAdminUser=createAsyncThunk(
     'admin/deleteUser',
     async({id},{rejectWithValue})=>{

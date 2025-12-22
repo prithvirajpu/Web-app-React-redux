@@ -13,6 +13,7 @@ import DeleteConfirmModal from "./DeleteConfirmModal.jsx";
 const AdminUsers = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteUser, setDeleteUser] = useState(null);
+  const [search, setSearch] = useState("");
 
   const dispatch = useDispatch();
   const { users, loading, error, previous, next } = useSelector((state) => state.admin);
@@ -71,6 +72,19 @@ const handleCreateUser = async (data) => {
     <div className="admin-users">
       <div className="admin-users-header">
         <h2 className="admin-users-title">List of Users</h2>
+        <input type="text" placeholder="Search Users..." value={search} onChange={(e)=>setSearch(e.target.value)}
+        onKeyDown={(e)=>{
+          if (e.key==='Enter'){
+            dispatch(fetchAdminUsers(search))
+          }
+        }} className="input-search" />
+                <button
+          onClick={() => dispatch(fetchAdminUsers(search))}
+          className="admin-search-btn"
+        >
+          Search
+        </button>
+
         <button className="admin-add-btn" onClick={() => setShowCreateModal(true)}>
           + Create User
         </button>

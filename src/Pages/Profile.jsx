@@ -4,6 +4,7 @@ import { fetchProfile } from '../features/auth/authThunks';
 import Navbar from '../Componenets/Navbar';
 import AxiosInstance from '../api/AxiosInstance';
 import './Profile.css';
+import userpic from '../assets/user.png'
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Profile = () => {
           <div className="profile-card">
             <img
               className="profile-image"
-              src={profile.profile_image || '/default-profile.png'}
+              src={profile.profile_image || userpic}
               alt={profile.username}
             />
 

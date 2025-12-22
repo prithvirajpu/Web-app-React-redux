@@ -51,4 +51,21 @@ AxiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+setInterval(async () => {
+  const refreshToken = localStorage.getItem("refresh_token");
+  if (refreshToken) {
+    try {
+      const response = await axios.post(
+        "http://localhost:8000/api/users/token/refresh/",
+        { refresh: refreshToken },
+        { withCredentials: true }
+      );
+      localStorage.setItem("access_token", response.data.access);
+    } catch (err) {
+      console.log("Refresh failed:", err);
+    }
+  }
+}, 60 * 1000); // every 1 minute
+
 export default AxiosInstance
