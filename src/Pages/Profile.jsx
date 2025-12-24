@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProfile } from '../features/auth/authThunks';
 import Navbar from '../Componenets/Navbar';
@@ -9,10 +9,23 @@ import userpic from '../assets/user.png'
 const Profile = () => {
   const dispatch = useDispatch();
   const { profile, loading, error } = useSelector(state => state.auth);
+  const [errors,setError]=useState()
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/svg+xml",
+      "image/webp",
+    ];
+
+  if (!allowedTypes.includes(file.type)) {
+    setError('Upload any image')
+    e.target.value = "";
+    return;
+  }
 
     const formData = new FormData();
     formData.append('profile_image', file);
@@ -49,6 +62,7 @@ const Profile = () => {
                 Change Photo
                 <input type="file" onChange={handleImageChange} />
               </label>
+              <p style={{color:'red',marginTop:'10px'}}>{errors}</p>
             </div>
 
             <div className="profile-info">

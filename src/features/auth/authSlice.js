@@ -90,5 +90,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { updateForm, logout,resetForm } = authSlice.actions;
+export const { updateForm, logout,resetForm,addCount,dec_Count } = authSlice.actions;
 export default authSlice.reducer;

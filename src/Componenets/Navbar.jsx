@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { logout } from '../features/auth/authSlice'
+import { logout, resetForm } from '../features/auth/authSlice'
 import { useNavigate } from 'react-router-dom'
 import './Navbar.css'
 import { useEffect, useState } from 'react'
@@ -14,6 +14,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout())
+    dispatch(resetForm())
     setShowLogoutModal(false)
     navigate('/')
   }

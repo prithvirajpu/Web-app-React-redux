@@ -33,7 +33,7 @@ const AdminUsers = () => {
 
 const handleCreateUser = async (data) => {
   await dispatch(createAdminUser(data)).unwrap();
-  setShowCreateModal(false); // Only runs if no error
+  setShowCreateModal(false); 
 };
 
   const startEdit = (user) => {
