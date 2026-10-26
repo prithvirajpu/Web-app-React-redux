@@ -1,0 +1,142 @@
+/* Page overlay */
+.login-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+/* Dark card */
+.login-card {
+  background-color: #2d2d2d;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 40px 52px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+}
+
+/* Title */
+.login-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* Form layout */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input wrapper */
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* left-aligned errors */
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Input fields */
+.login-input {
+  width: 100%;
+  padding: 14px 12px 10px 50px; /* left padding for icons/spacing */
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #404040;
+  color: white;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Placeholder */
+.login-input::placeholder {
+  color: #b0b0b0;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.login-input:not(:placeholder-shown)::placeholder {
+  opacity: 0;
+}
+
+/* Error text aligned to input start */
+.error-text {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  text-align: left;
+  margin-left: 0; /* aligned with input start */
+}
+.error-back {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  text-align: left;
+  margin-left: 120px; /* aligned with input start */
+}
+
+/* Actions */
+.login-actions {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin: 10px auto 0;
+  gap: 12px;
+}
+
+/* Submit/Login button */
+.btn-submit {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-submit:hover {
+  background: #2563eb;
+}
+
+/* Footer link */
+.login-footer {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.login-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-card {
+    width: 90%;
+    padding: 25px 20px 40px;
+  }
+
+  .input-wrapper,
+  .login-actions {
+    width: 90%;
+  }
+}

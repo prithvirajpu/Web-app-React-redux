@@ -1,0 +1,131 @@
+/* Overlay */
+.register-container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+
+/* Card */
+.register-card {
+  background-color: #2d2d2d;
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 40px 52px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  color: white;
+  /* text-align: center; */
+}
+
+/* Title */
+.register-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* Form */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Input + error wrapper */
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center the wrapper */
+}
+
+/* Inputs */
+.register-input {
+  width: 100%;
+  margin: 0 30px 0 30px; /* left-right margin like modal */
+  padding: 14px 10px 10px 50px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #404040;
+  color: white;
+  font-size: 14px;
+}
+
+/* Placeholder */
+.register-input::placeholder {
+  color: #b0b0b0;
+}
+
+/* Error text */
+.error-text {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  align-self: flex-start;
+  margin-left: 0; /* same as input left margin */
+}
+
+/* Actions */
+.register-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 70%;
+  margin: 10px auto 0;
+}
+
+/* Submit button */
+.btn-submit {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-submit:hover {
+  background: #2563eb;
+}
+
+/* Footer */
+.register-footer {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.register-link {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .register-card {
+    width: 90%;
+    padding: 25px 20px 40px;
+  }
+
+  .register-input,
+  .input-wrapper,
+  .register-actions {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .error-text {
+    margin-left: 10px; /* adjust for small screen */
+  }
+}
